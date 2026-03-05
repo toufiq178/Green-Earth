@@ -1,6 +1,19 @@
 
 
+const categoriesContainer = document.getElementById("categories-Container");
+const tressContainer = document.getElementById("trees-continer");
+const loadingSpinner = document.getElementById("loadingSpinner");
+const allTressBtn = document.getElementById("all-tress-btn");
 
+const showLoading = () => {
+
+    loadingSpinner.classList.remove("hidden");
+    tressContainer.innerHTML = ""
+}
+
+const hideLoading = () => {
+    loadingSpinner.classList.add("hidden")
+}
 
 
 const loadCategories = async () => {
@@ -10,30 +23,81 @@ const loadCategories = async () => {
 
     displayCategories(data.categories);
 
+
+
 }
 
 const displayCategories = (categories) => {
 
-    const categoriesContainer = document.getElementById("categories-Container");
+
 
     console.log();
 
     categories.forEach(cate => {
 
         const btn = document.createElement("button");
-        btn.className = "text-left bg-transparent w-full"
+        btn.className = "text-left bg-transparent w-full cursor-pointer padding: 4px 8px; "
         btn.textContent = `${cate.category_name}`
+        btn.onclick = () => { setActiveBtn(cate.id, btn) }
         categoriesContainer.append(btn)
+
+
+
     });
 
 }
 
 
-const loadingTress = async () => {
+const setActiveBtn = async (categoryId, btn) => {
+    showLoading()
 
-    const res = await fetch("https://openapi.programming-hero.com/api/plants");
+    const allBtns = document.querySelectorAll(" #categories-Container button ,#all-tress-btn");
+
+    allBtns.forEach(btn => {
+
+        btn.classList.remove("active")
+    });
+
+    btn.classList.add("active")
+
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`);
     const data = await res.json();
 
+    displayTress(data.plants);
+    hideLoading()
+}
+
+
+allTressBtn.addEventListener("click", () => {
+
+    showLoading()
+    const allBtns = document.querySelectorAll(" #categories-Container button ,#all-tress-btn");
+    allBtns.forEach(btn => {
+
+        btn.classList.remove("active")
+    });
+
+    allTressBtn.classList.add("active")
+
+    loadingTress()
+
+    hideLoading()
+})
+
+
+
+
+
+
+
+
+const loadingTress = async () => {
+
+    showLoading()
+    const res = await fetch("https://openapi.programming-hero.com/api/plants");
+    const data = await res.json();
+    hideLoading()
     displayTress(data.plants);
 
 }
@@ -51,9 +115,9 @@ const loadingTress = async () => {
 
 const displayTress = (plants) => {
 
-    console.log(plants);
 
-    const tressContainer = document.getElementById("trees-continer");
+
+
     tressContainer.innerHTML = ""
 
 
@@ -81,7 +145,7 @@ const displayTress = (plants) => {
                             </div>
                             
                             <div class="card-actions justify-end">
-                                <button class="btn btn-primary w-full rounded-full">Buy Now</button>
+                                <button class="btn btn-primary w-full rounded-full ">Buy Now</button>
                             </div>
                         </div>
         
@@ -89,6 +153,7 @@ const displayTress = (plants) => {
 
         tressContainer.append(div)
     })
+
 
 }
 

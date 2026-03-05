@@ -103,7 +103,7 @@
 
                     <div class="space-y-3 ">
 
-                        <button class="text-left bg-transparent w-full ">All Tries</button>
+                        <button id="all-tress-btn" class="text-left bg-transparent w-full cursor-pointer active ">All Tries</button>
                         <div id="categories-Container" class="space-y-5">
 
                         </div>
@@ -113,9 +113,19 @@
 
 
                 <!-- cards -->
-                <div id="trees-continer" class="col-span-3  w-full grid grid-cols-3 gap-4">
+                <div class="col-span-3  w-full ">
+
+                    <!-- dynamic card here -->
+
+                    <div id="trees-continer"  class="grid grid-cols-3 gap-4 ">
 
 
+                    </div>
+
+                    <!-- loading -->
+                     <div id="loadingSpinner" class="h-[60vh] flex hidden justify-center items-center">
+                        <span class="loading loading-spinner text-color-primary"></span>
+                     </div>
                     
                 </div>
 
