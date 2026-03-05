@@ -95,10 +95,10 @@
             <h1 class="text-3xl font-bold text-center ">Choose Your Trees</h1>
 
 
-            <div class="grid grid-cols-5 justify-items-center gap-10  ">
+            <div class="grid grid-cols-1 md:grid-cols-8 lg:grid-cols-10 justify-items-center gap-10  ">
 
                 <!-- categories -->
-                <div class="col-span-1 space-y-4  w-full ">
+                <div class="col-span-1 md:col-span-2 lg:col-span-2 space-y-4  w-full ">
                     <h1 class="font-bold text-xl">Categories</h1>
 
                     <div class="space-y-3 sticky top-8">
@@ -114,11 +114,11 @@
 
 
                 <!-- cards -->
-                <div class="col-span-3  w-full ">
+                <div class=" col-span-1 md:col-span-4 lg:col-span-6  w-full ">
 
                     <!-- dynamic card here -->
 
-                    <div id="trees-continer" class="grid grid-cols-3 gap-4 ">
+                    <div id="trees-continer" class="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 gap-4 ">
 
 
                     </div>
@@ -132,21 +132,55 @@
 
 
                 <!-- cart -->
-                <div class="col-span-1  bg-blue-600 w-full">
+                <div class=" space-y-5 col-span-1 md:col-span-2  w-full">
 
-                    your cart
+                    <h1 class="text-3xl font-bold text-center  ">Cart</h1>
+
+
+                    <div id="cart-container" class="space-y-5">
+
+
+                    </div>
+                    <!-- <div id="cart-container" class=" card bg-gray-50 px-5 py-3">
+                        
+                        <div class=" flex justify-between items-start space-y-2">
+                            <div class="space-y-1">
+                                <h3 class="text-xl ">item name</h3>
+                                <div >
+                                    <span> $500  x  1 </span>
+                                </div>
+                            </div>
+                            
+                            <button class="">X</button>
+                        </div>
+                        
+                        <h1 class="text-right text-xl">$500</h1>
+                        
+                    </div> -->
+
+
+                    <div id="emptyCart" class="text-center py-20 space-y-5 col-span-full ">
+                        <p class="font-bangla text-xl text-[#79716B]">You do not add any cart</p>
+                        <h1 class="font-bangla font-medium text-4xl text-[#292524]">Add a cart</h1>
+
+                    </div>
+
+                    <div class=" bg-[#CFF0DC] active flex justify-between items-center py-10 px-3">
+                        <p class="font-bold">Total :</p>
+                        <p id="totalPrice">$0</p>
+                    </div>
                 </div>
 
             </div>
 
             <!-- Open the modal using ID.showModal() method -->
-            
-            
+
+
             <!-- modal -->
-            
+
             <div id="modal-container">
-                
-                
+
+
                 <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
                 <!-- <dialog id="my_modal_1" class="modal">
                     <div class="modal-box space-y-3">
