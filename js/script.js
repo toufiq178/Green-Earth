@@ -102,6 +102,19 @@ const loadingTress = async () => {
 
 }
 
+const loadModal = async (id) => {
+
+    
+    const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`);
+    const data = await res.json();
+    
+
+    displayModal(data.plants);
+
+    // console.log(data.plants);
+
+}
+
 
 // {
 //     "id": 1,
@@ -121,7 +134,9 @@ const displayTress = (plants) => {
     tressContainer.innerHTML = ""
 
 
+
     plants.forEach(plant => {
+
 
         const div = document.createElement("div");
         div.className = "card bg-base-100  shadow-sm"
@@ -132,7 +147,7 @@ const displayTress = (plants) => {
                                 alt="${plant.name}"
                                 title="${plant.name}"
                                 class="h-48 w-full object-cover cursor-pointer"
-                                
+                                onclick="loadModal(${plant.id})"
                             />
                         </figure>
                         <div class="card-body space-y-2">
@@ -145,7 +160,7 @@ const displayTress = (plants) => {
                             </div>
                             
                             <div class="card-actions justify-end">
-                                <button class="btn btn-primary w-full rounded-full ">Buy Now</button>
+                                <button class="btn bg-color-primary text-white w-full rounded-full ">Add to Cart</button>
                             </div>
                         </div>
         
@@ -156,6 +171,58 @@ const displayTress = (plants) => {
 
 
 }
+
+
+
+// {
+//     "id": 1,
+//     "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
+//     "name": "Mango Tree",
+//     "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
+//     "category": "Fruit Tree",
+//     "price": 500
+// }
+
+
+const displayModal = (plant) => {
+
+
+    const modalContainer = document.getElementById("modal-container");
+
+    console.log(plant);
+    
+
+    modalContainer.innerHTML = `
+
+                <dialog id="my_modal_1" class="modal">
+                    <div class="modal-box space-y-3">
+
+                        <h1 class="text-2xl font-bold text-color-primary ">${plant.name}</h1>
+
+                        <div class="rounded-2xl ">
+                            <img class= "h-48 w-full object-cover cursor-pointer rounded-2xl" src="${plant.image}" alt="">
+                        </div>
+                        <p class="font-bold text-gray-700">Category : <span class="active">${plant.category}</span></p>
+                        <p class="">${plant.description}</p>
+
+                        <h1 class=" text-2xl font-bold text-color-primary ">$${plant.price}</h1>
+
+                        <div class="modal-action">
+                            <button class="btn bg-color-primary text-white  rounded-full ">Add to Cart</button>
+                            <form method="dialog">
+                                
+                                <button class="btn">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
+
+    `
+    document.getElementById("my_modal_1").showModal()
+
+
+}
+
 
 
 
